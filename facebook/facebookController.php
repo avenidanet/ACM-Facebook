@@ -12,6 +12,7 @@
 class facebookController extends AbstractController{
 	
 	public $user;
+	public $fb;
 	
 	private function base64_url_decode($input){
 		return base64_decode(strtr($input, '-_', '+/'));
@@ -101,14 +102,14 @@ class facebookController extends AbstractController{
 	}
 	
 	public function authorized(){
-		$facebook = new Facebook(array(
+		$this->fb = new Facebook(array(
 				'appId'  => $this->acore->fb_apikey,
 				'secret' => $this->acore->fb_secret,
 		));
-		$user = $facebook->getUser();
+		$user = $this->fb->getUser();
 		if ($user) {
 			try {
-				$this->user = $facebook->api('/me');
+				$this->user = $this->fb->api('/me');
 				return TRUE;
 			} catch (FacebookApiException $e) {
 				$user = null;
