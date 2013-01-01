@@ -30,7 +30,7 @@ $app = new acore;
 	<?php if($app->facebook->authorized()){?>
 		<h1>Autorizado</h1>
 		<p></p><a href="#" id="save">Salvar usuario</a>
-		<?php D::log($app->facebook->user)?>
+		<?php A::log($app->facebook->user)?>
 		<script>
 		$('#save').click(function(){
 			$.ajax({

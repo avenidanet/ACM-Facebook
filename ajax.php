@@ -18,7 +18,7 @@ $app = new acore();
 
 if($app->facebook->authorized()){
 	//User authorized
-	D::log($app->facebook->user);
+	A::log($app->facebook->user);
 }else{
 	echo "User not authorized.";
 }
