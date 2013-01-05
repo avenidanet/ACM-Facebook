@@ -10,52 +10,37 @@
  */
 
 include 'acore/acore.php';
-include 'facebook/facebook.php';
+include 'facebook.php';
 $app = new acore;
+$config = Settings::Init();
 ?>
 <!doctype html>
-<html lang="en">
+<html lang="en" ng-app>
 <head>
 	<meta charset="UTF-8">
 	<title></title>
-	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js"></script>
+	<?php A::script('jquery,angular');?>
 </head>
 <body>
-<?php $app->facebook->header();?>
+<?php 
+$app->facebook->header();
 
-<?php if($app->facebook->info('liked')){?>
-
-	<h1>Liker</h1>
+if($app->facebook->info('liked')){
 	
-	<?php if($app->facebook->authorized()){?>
-		<h1>Autorizado</h1>
-		<p></p><a href="#" id="save">Salvar usuario</a>
-		<?php A::log($app->facebook->user)?>
-		<script>
-		$('#save').click(function(){
-			$.ajax({
-				   url: "ajax.php",
-				   type: "POST",
-				   data: {	session: '<?php echo(session_id());?>'}
-				});
-			return false;
-		});
-		</script>
-	<?php }else{?>
-		<h1>No autorizado</h1>
-		<p><a href="#" id="autorizar">Autorizar</a></p>
-		<script>
-		$('#autorizar').click(function(){
-			<?php echo $app->facebook->btn_login("alert(5)","alert(6)",'alert(7)')?>
-			return false;
-		});
-		</script>
-	<?php }?>
-	
-<?php }else{?>
-	<h1>No liker</h1>
-<?php }?>
+	$fb = new Facebook(array(
+		'appId'  => $config->fb_apikey,
+		'secret' => $config->fb_secret
+	));
 
-<?php $app->facebook->footer();?>	
+	if($app->facebook->authorized($fb)){
+		include 'autorizado.php';
+ 	}else{
+		include 'no_autorizado.php';
+ 	}
+}else{
+	include 'no_liker.php';
+}
+
+$app->facebook->footer();?>	
 </body>
 </html>
