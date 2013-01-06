@@ -12,11 +12,18 @@ if(isset($_POST["session"])){
 	session_id($_POST["session"]);
 	session_start();
 }
+
 include 'acore/acore.php';
-include 'facebook/facebook.php';
+include 'facebook.php';
 $app = new acore();
 
-if($app->facebook->authorized()){
+$app->facebook;
+$fb = new Facebook(array(
+		'appId'  => $config->fb_apikey,
+		'secret' => $config->fb_secret
+));
+
+if($app->facebook->authorized($fb)){
 	//User authorized
 	A::log($app->facebook->user);
 }else{

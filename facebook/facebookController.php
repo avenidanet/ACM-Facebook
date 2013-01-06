@@ -110,6 +110,8 @@ class facebookController extends AbstractController{
 				$user = null;
 				return FALSE;
 			}
+		} else {
+			return FALSE;
 		}		
 	}
 	
