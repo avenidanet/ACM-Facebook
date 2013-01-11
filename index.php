@@ -15,13 +15,13 @@ $app = new acore;
 $config = Settings::Init();
 ?>
 <!doctype html>
-<html lang="en" ng-app>
+<html lang="en" xmlns:ng="http://angularjs.org">
 <head>
 	<meta charset="UTF-8">
 	<title></title>
-	<?php A::script('jquery,angular');?>
+	<?php A::script('jquery,angular','js/');?>
 </head>
-<body>
+<body id="ng-app" ng-app>
 <?php 
 $app->facebook->header();
 
