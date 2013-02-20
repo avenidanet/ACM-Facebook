@@ -43,11 +43,15 @@ class facebookController extends AbstractController{
 	}
 	
 	public function info($data=''){
-		if($data == 'liked' || $data == 'admin' || $data == 'id'){
+		if($data == 'liked' || $data == 'admin' || $data == 'id' || $data == 'app_data'){
 			$result = $this->parse_signed_request();
-			return $result['page'][$data];
+			if($data == 'app_data'){
+				return $result['app_data'];
+			}else{
+				return $result['page'][$data];
+			}	
 		}else{
-			echo "Use 'liked','admin','id'";
+			echo "Use 'liked','admin','id','app_data'";
 		}
 	}
 	
