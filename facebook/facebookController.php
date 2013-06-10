@@ -97,7 +97,7 @@ class facebookController extends AbstractController{
 			}";
 	
 		if(preg_match('/apps.facebook.com/',$_SERVER[HTTP_REFERER])){
-			$script = "top.location.href = '".$this->acore->fb_url."';";
+			$script .= "top.location.href = '".$this->acore->fb_url."';";
 		}
 	
 		$script .= "</script>";
