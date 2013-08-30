@@ -2,7 +2,7 @@
 <p><a href="#" id="autorizar">Autorizar</a></p>
 <script>
 $('#autorizar').click(function(){
-	<?php echo $app->facebook->btn_login("fb_cancel()","fb_cancel_permisions()","fb_succes()")?>
+	<?php echo $app->facebook->btn_login("fb_cancel()","fb_cancel_permisions()","fb_success()")?>
 	return false;
 });
 
