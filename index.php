@@ -18,27 +18,31 @@ $config = Settings::Init();
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title></title>
-	<?php A::script('jquery','js/');?>
+	<title>Facebook App | ACORE</title>
+	<?php A::script('jquery,validate','js/');?>
+	<!-- Estilos y javascript comunes -->
 </head>
 <body>
 <?php 
 $app->facebook->header();
-
-if($app->facebook->info('liked')){
-	
-	$fb = new Facebook(array(
-		'appId'  => $config->fb_apikey,
-		'secret' => $config->fb_secret
-	));
-
-	if($app->facebook->authorized($fb)){
-		include 'autorizado.php';
- 	}else{
-		include 'no_autorizado.php';
- 	}
+if($app->facebook->info('app_data') == 'dato'){
+	include 'invite.php';
 }else{
-	include 'no_liker.php';
+	if($app->facebook->info('liked')){
+	
+		$fb = new Facebook(array(
+				'appId'  => $config->fb_apikey,
+				'secret' => $config->fb_secret
+		));
+	
+		if($app->facebook->authorized($fb)){
+			include 'autorizado.php';
+		}else{
+			include 'no_autorizado.php';
+		}
+	}else{
+		include 'no_liker.php';
+	}	
 }
 
 $app->facebook->footer();?>	

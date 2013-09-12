@@ -13,10 +13,9 @@ include 'facebook.php';
 $app = new acore();
 $config = Settings::Init();
 
-$post = A::ng_params();
-
-if(isset($post->sesion)){
-	session_id($post->sesion);
+//Fix session facebook
+if(isset($_POST['session'])){
+	session_id($_POST['session']);
 	session_start();
 }
 
@@ -26,12 +25,10 @@ $fb = new Facebook(array(
 		'secret' => $config->fb_secret
 ));
 
-
 if($app->facebook->authorized($fb)){
 	//User authorized
 	A::log($app->facebook->user);
 }else{
 	echo "User not authorized.";
 }
-
 ?>
