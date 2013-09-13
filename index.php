@@ -25,6 +25,7 @@ $config = Settings::Init();
 <body>
 <?php 
 $app->facebook->header();
+$config->fb_url = "https://www.facebook.com/".$app->facebook->info('id')."?sk=app_".$config->fb_apikey;
 if($app->facebook->info('app_data') == 'dato'){
 	include 'invite.php';
 }else{

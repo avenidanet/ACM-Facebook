@@ -17,5 +17,4 @@ $config->database = '';
 
 $config->fb_apikey = "";
 $config->fb_secret = "";
-$config->fb_url = "https://www.facebook.com";
 $config->fb_scope = "publish_stream";
