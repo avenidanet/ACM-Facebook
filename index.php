@@ -35,7 +35,7 @@ if($app->facebook->info('app_data') == 'dato'){
 				'secret' => $config->fb_secret
 		));
 	
-		if($app->facebook->authorized($fb)){
+		if($app->facebook->authorized($fb) && $app->facebook->registred()){
 			include 'autorizado.php';
 		}else{
 			include 'no_autorizado.php';

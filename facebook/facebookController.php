@@ -149,4 +149,13 @@ class facebookController extends AbstractController{
 		}, {scope: '".$this->acore->fb_scope."'});";
 		return $script;
 	}
+	
+	public function registred(){
+		$data = $this->model->querySelect('movi15_usuarios',FALSE,"*","fb_id = :idfb",array('idfb'=>$this->user['id']));
+		if(count($data) > 0){
+			return TRUE;
+		}else{
+			return FALSE;
+		}
+	}
 }
